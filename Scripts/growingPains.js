@@ -40,7 +40,7 @@ const plantArea = "circle"; //Type of Area plant lives is a circular area
 const plantAreaRadius = 5; //5 inches in radius for plant area
 const minPlantSpace = 0.8;
 let startingPlantNum = 20;
-const PI = 3.1415;
+const pi = 3.1415;
 
 // 2. The formula for calculating the area of a circle is PI multiplied by the radius, squared:const PI = 3.1415;const area = PI * radius * radius;
 //                                  Area = PIr^2 = the area of the circle is approximately 78.54 square meters(
@@ -54,42 +54,40 @@ const PI = 3.1415;
 //             1 meter = 1.09361 yards
 //        Final Answer:
 //        5 meters ≈ 5.47 yards.
-let areaInSquaredMeters = PI * plantAreaRadius * plantAreaRadius; //Calculate Area in Square Meters, of the space the current 20 plants live in.
+let areaInSquaredMeters = pi * plantAreaRadius * plantAreaRadius; //Calculate Area in Square Meters, of the space the current 20 plants live in.
 console.log(areaInSquaredMeters);
 const areaSquaredFormatted = areaInSquaredMeters.toFixed(2); //Format area by 2 decimals using the toFixed method that converst the numnber to a string and then rounds to 2 decimal places.
 //the number specified in the parenthesis for the toFixed method can be changed to account for the number of decimal places desired to be displayed.
-console.log(
-  `Area in Squared Meters Formated with 2 decimal points is  ${areaSquaredFormatted}.`
-);
+console.log("Area of garden in Squared Meters Formated with 2 decimal points is ", areaSquaredFormatted);
 
 // 3. Each plant requires a minimum space of 0.8 square meters.
 //lets find out the number of plants I can plant in my little area
-let totalNumberOfPlantsInGarden = areaInSquaredMeters / minPlantSpace;
+let totalNumberOfPlantsInGarden = Math.floor(areaInSquaredMeters / minPlantSpace);//area if gardeb divided by the minimum plants in the garden
 let totalNumberOfPlantsInGardenRounded = Math.round(
   totalNumberOfPlantsInGarden
 );
 console.log(
-  `Total number of plants that you can plant in a garden that is ${areaSquaredFormatted} meters in size is ${totalNumberOfPlantsInGardenRounded}`
+  `Total number of plants that you can plant in the garden that is ${areaSquaredFormatted} meters in size is ${totalNumberOfPlantsInGardenRounded}`
 );
 
 //Calculations to check plant growth after 1 week using Math.pow function
 function plantGrowth(week3) {
   //The plants will triple in number each week
-  let growthOfPlant = startingPlantNum * Math.pow(3, week3); //plant growth after 3 weeks
+  let growthOfPlant = startingPlantNum * Math.pow(2, week3); //plant growth after 3 weeks
   console.log(
     "Number of Plants growing in the garden after " + week3 + " weeks is ",
     growthOfPlant
   );
 
   //Calculate how much space is used by current number of plants in the garden by checking if 100% of garden space is used
-  let gardenSpace = (growthOfPlant / startingPlantNum) * 100;
+  let gardenSpace = (growthOfPlant / totalNumberOfPlantsInGarden ) * 100;
   console.log(
     "Total space used in the garden after " +
       week3 +
       " week(s) with " +
       growthOfPlant +
       " plants in the garden is ",
-    gardenSpace + " squared Meters"
+    gardenSpace.toFixed(2) + " squared Meters"
   );
 
   //lets decide what to do based on the following objectives
@@ -115,3 +113,5 @@ plantGrowth(1); //first week of plant growth
 plantGrowth(2);//second week of plant growth
 plantGrowth(3);//third week of plant growth
 //***************************************** */
+console.log(" End of Part 1");// Constants
+
